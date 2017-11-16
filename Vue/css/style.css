@@ -1,0 +1,472 @@
+/* ----------------------------- */
+		/* reset css */
+/* ----------------------------- */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins,
+kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody,
+tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+
+body {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* ----------------------------- */
+	/* Header - toutes pages */
+/* ----------------------------- */
+
+header, nav {
+	border: 2px solid red;
+}
+
+header {
+	width: 100%;
+	height: 200px;
+}
+
+.banniere {
+	text-align: center;
+	font-weight: bold;
+	font-size: 2em;
+	margin-top: 2%;
+}
+
+.barre {
+	display: none;
+}
+
+nav ul {
+	display: flex;
+	justify-content: space-around;
+	padding: 1%;
+	font-weight: bold;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+h1 {
+	font-family: "Comic Sans MS";
+	font-style: italic;
+	font-size: 3em;
+	text-align: center;
+	margin-top: 2%;
+	color: #44128F;
+}
+
+/* ----------------------------- */
+		/* Page d'accueil */
+/* ----------------------------- */
+
+.blocs-conteneur {
+	display: flex;
+}
+
+.bloc-1, .bloc-2, .bloc-3 {
+	border-left: 1px solid black;
+	width: 33%;
+	height: 400px;
+	text-align: center;
+	padding: 1%;
+}
+
+.bloc-slider {
+	width: 50%;
+	height: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10%;
+	border: 1px solid black;
+}
+
+.bloc-tache {
+	border: 1px solid black;
+	height: 250px;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.bloc-compteur {
+	border: 1px solid black;
+	height: 100px;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5%;
+}
+
+/* ----------------------------- */
+		/* Page multimédia */
+/* ----------------------------- */
+
+.bloc-multimedia {
+	height: 300px;
+}
+
+.bloc-multimedia img {
+	padding-top: 4%;
+	margin-left: 17%;
+}
+
+.element-affiche {
+	display: none;
+}
+
+.bloc-multimedia-dossier img {
+	width: 40%;
+	height: 20%;
+	margin-left: 28%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.bloc-multimedia-detail {
+	display: flex;
+	justify-content: space-around;
+}
+
+.diaporama {
+	width: 300px;
+	height: 400px;
+	border: outset 4px white;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+/* ----------------------------- */
+		/* Page WIP */
+/* ----------------------------- */
+.article-wip {
+	margin: 2%;
+	border: 1px solid black;
+}
+
+.article-wip img {
+	width: 200px;
+	height: 200px;
+	float: left;
+	margin-right: 2%;
+}
+
+.texte-work {
+	text-align: justify;
+}
+
+/* ----------------------------- */
+		/* Page Test Gaming */
+/* ----------------------------- */
+
+.bloc-test {
+	display: block;
+	margin: 2%;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid black;
+}
+
+.b1, .b2 {
+	display: flex;
+	margin-left: 10%;
+}
+
+.bloc-test h2 {
+	font-family: "Courier New";
+	margin-bottom: 5%;
+	text-align: center;
+	font-size: 1.7em;
+}
+
+.bloc-test-image img {
+	width: 250px;
+	height: 200px;
+	border: 2px solid grey;
+	margin-left: 40%;
+}
+
+.bloc-test-1 {
+	margin-left: 20% !important;
+}
+
+.bloc-test-1, .bloc-test-2, .bloc-test-3 {
+	border: 1px solid black;
+	width: 40%;
+	height: 200px;
+	padding: 2%;
+	margin-left: 2%;
+	margin-bottom: 2%;
+	text-align: justify;
+}
+
+/* ----------------------------- */
+		/* Page A Propos */
+/* ----------------------------- */
+
+.bloc-a-propos {
+	width: 80%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	border: 1px solid black;
+}
+
+.bloc-a-propos h2 {
+	font-family: "Courier New";
+	font-size: 1.7em;
+	font-weight: bold;
+}
+
+.bloc-texte {
+	text-align: center;
+	margin-top: 2%;
+}
+
+/* ----------------------------- */
+		/* Page livre d'or */
+/* ----------------------------- */
+
+.livre-or {
+	text-align: center;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid black;
+}
+
+.livre-or h2 {
+	font-family: "Courier New";
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-top: 4%;
+}
+
+.livre-or h3 {
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-bottom: 2%;
+}
+
+form {
+	text-align: center;
+	margin-bottom: 2%;
+}
+
+input {
+	margin-bottom: 2%;
+	margin-top: 1%;
+	width: 30%;
+}
+
+textarea {
+	resize: none;
+	width: 30%;
+	height: 100px;
+	margin-top: 1%;
+}
+
+.commentaire-exemple-pseudo {
+	font-weight: bold;
+	text-align: left;
+	margin-left: 3%;
+}
+.commentaire-exemple-texte {
+	font-style: italic;
+	text-align: left;
+	margin-left: 3%;
+	margin-top: 1%;
+	margin-bottom: 2%;
+}
+
+/* ----------------------------- */
+	/* Footer - toutes pages */
+/* ----------------------------- */
+
+footer {
+	border: 2px solid red;
+	padding: 1%;
+	text-align: center;
+}
+
+/* ----------------------------- */
+		/* Media Queries */
+/* ----------------------------- */
+
+@media all and (min-width: 320px) and (max-width: 426px) {
+	h1 {
+		font-size: 2em;
+	}
+	.btn-navigation {
+		position: fixed;
+		right: 3%;
+		top: 33%;
+		z-index: 100;
+	}
+	.barre {
+		display: block;
+		width: 30px;
+		height: 3px;
+		background: #111;
+		margin-top: 3px;
+	}
+	.btn-navigation .barre.blanc {
+		background: white;
+	}
+	.navigation {
+		position: fixed;
+		right: 0;
+		background: #333;
+		width: 45%;
+		height: 100%;
+		padding-top: 10%;
+		text-align: center;
+		text-transform: uppercase;
+		text-decoration: underline;
+		transform: translateX(100%);
+	}
+	.navigation.isOpen{
+		transition: transform .6s ease-out;
+		transform: translateX(0);
+		display: block;
+		font-size: 0.6em;
+	}
+	nav ul, .bloc-conteneur {
+		display: block;
+	}
+	.navigation ul li {
+		padding-top: 10%;
+	}
+	.navigation ul li a {
+		color: white;
+	}
+	.bloc {
+		border-bottom: 1px solid black;
+		width: 100%;
+	}
+	.bloc:nth-child(2) {
+		position: relative;
+		top: 0;
+	}
+	.bloc:nth-child(1) {
+		position: relative;
+		top: 25%;
+	}
+	.bloc-multimedia {
+		height: 100%;
+		margin-top: 10%;
+	}
+	.bloc-multimedia img {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.work {
+		text-align: center;
+		margin-top: 10%;
+	}
+	.work img {
+		float: none;
+	}
+	.bloc-test {
+		width: 100%;
+		margin-top: 10%;
+	}
+	.bloc-test-image img {
+		margin-left: 10%;
+		margin-bottom: 2%;
+	}
+	.bloc-test-1 {
+		margin-left: 6% !important;
+		height: auto;
+	}
+	.b1, .b2 {
+		display: block;
+		margin-left: 1%;
+	}
+	.bloc-test-1, .bloc-test-2, .bloc-test-3 {
+		width: 83%;
+	}
+	.bloc-test-2, .bloc-test-3 {
+		margin-left: 6%;
+	}
+	.bloc-a-propos {
+		margin-top: 10%;
+	}
+	.livre-or {
+		width: 100%;
+		margin-top: 10%;
+	}
+	input, textarea {
+		width: 50%;
+	}
+}
+
+@media all and (min-width: 427px) and (max-width: 769px) {
+	.bloc-tache {
+		margin-top: 15%;
+		height: 170px;
+	}
+	.bloc-multimedia img {
+		margin-left: 12%;
+	}
+	.bloc-test-image img {
+		margin-left: 18%;
+	}
+	.bloc-test-1 {
+		margin-left: 6% !important;
+	}
+	.b1, .b2 {
+		display: block;
+	}
+	.bloc-test-1, .bloc-test-2, .bloc-test-3 {
+		width: 70%;
+	}
+	.bloc-test-2, .bloc-test-3 {
+		margin-left: 6%;
+	}
+}
+
+@media all and (min-width: 770px) and (max-width: 1024px) {
+	.bloc-test {
+		width: 80%;
+	}
+	.bloc-test-image img {
+		margin-left: 20%;
+	}
+	.bloc-test-1 {
+		margin-left: 14% !important;
+	}
+}
