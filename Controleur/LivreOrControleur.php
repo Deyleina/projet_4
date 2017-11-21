@@ -2,7 +2,7 @@
 
 namespace Cosplay;
 
-require_once('../Modele/LivreOrModele.php');
+require_once(root_path . '/Modele/LivreOrModele.php');
 
 class Livre {
 	private $LivreOrModele;
@@ -13,6 +13,6 @@ class Livre {
 
 	function commentaireListe() {
 		$requete = $this->LivreOrModele->listeCommentaire();
-		require('../Vue/web/pageLivreOr.php');
+		require(root_path . '/Vue/web/pageLivreOr.html');
 	}
 }
