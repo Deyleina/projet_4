@@ -2,17 +2,18 @@
 
 namespace Frontend;
 
-require_once ('Modele.php');
+require_once (root_path . '/vendor/Modele.php');
 
-class TestModele extends Modele {
+class TestModele extends \Cosplay\Modele {
 	function listeTest() {
-		$test = $this->bdd->query('SELECT plateforme, développeur, genre, intro FROM test ORDER BY id DESC LIMIT 0, 10');
+		$test = $this->bdd->query('SELECT * FROM test ORDER BY id DESC LIMIT 0, 10');
 		return $test;
 		// cette fonction va afficher la liste des tests dans la page
 	}
 
-	function afficherTest() {
-		$testComplet = $this->bdd->query('SELECT titre, image, contenu FROM test ORDER BY id DESC LIMIT 0, 10');
+	function afficherTest($id) {
+		$testComplet = $this->bdd->prepare('SELECT * FROM test WHERE id = ?');
+		$testComplet->execute(array($id));
 		return $testComplet;
 	}
 

@@ -2,7 +2,7 @@
 
 namespace Frontend;
 	
-require_once('/Frontend/Modele/InscriptionModele.php');
+require_once(root_path . '/Frontend/Modele/InscriptionModele.php');
 
 class InscriptionControleur {
 
@@ -13,13 +13,21 @@ class InscriptionControleur {
 	}
 
 	public function afficherPageInscription(){
-		require '/Frontend/Vue/web/pageInscription.php';
+		require root_path . '/Frontend/Vue/web/pageInscription.php';
 	}
 
 	public function ajoutUtilisateur(){
-		$ajout = $this->InscriptionModele->ajoutUtilisateur($_POST['nouveauPseudo'], $_POST['nouvelEmail'], $_POST['nouveauMotDePasse']);
-		$ajouter = $ajout->fetch();
-		require '/Frontend/Vue/web/pageAccueil.php';
+		if (empty($_POST['nouveauPseudo']) || empty($_POST['nouvelEmail']) || empty($_POST['nouveauMotDePasse'])) {
+			echo '<script>Javascript:alert("Merci de remplir tous les champs !")</script>';
+			echo '<SCRIPT LANGUAGE="JavaScript">document.location.href="index.php?page=inscription"</SCRIPT>';
+			die;
+		} else {
+			$ajout = $this->InscriptionModele->ajoutUtilisateur($_POST['nouveauPseudo'], $_POST['nouvelEmail'], $_POST['nouveauMotDePasse']);
+			$ajouter = $ajout->fetch();
+			$ajout->closeCursor();
+			echo '<SCRIPT LANGUAGE="JavaScript">document.location.href="index.php?page=connexion"</SCRIPT>';
+			die();
+		}
 	}
 }
 

@@ -2,9 +2,9 @@
 
 namespace Backend;
 
-require_once ('Modele.php');
+require_once (root_path . '/vendor/Modele.php');
 
-class GestionTravauxModele extends Modele {
+class GestionTravauxModele extends \Cosplay\Modele {
 
 	function __construct() {
 		parent::__construct();
@@ -16,16 +16,9 @@ class GestionTravauxModele extends Modele {
 		// cette fonction va afficher la liste des commentaires
 	}
 
-	function validerModifierTravaux($image, $titre, $contenu, $id) {
-		$validerModificationTravaux = $this->bdd->prepare('UPDATE travaux SET image = :image, titre = :titre, date = NOW(), contenu = :contenu) WHERE id = :id');
-		$validerModificationTravaux->execute(array('image' => $image, 'titre' => $titre, 'contenu' => $contenu, 'id' => $id));
-		return $validerModificationTravaux;
-		// cette fonction va afficher la liste des commentaires
-	}
-
-	function supprimerTravaux($id) {
-		$supprimerTravaux = $this->bdd->query('DELETE * FROM travaux WHERE id = :id');
-		$supprimerTravaux->execute(array('id' => $id));
+	function suppressionTravaux($id) {
+		$supprimerTravaux = $this->bdd->prepare('DELETE FROM travaux WHERE id = ?');
+		$supprimerTravaux->execute(array($id));
 		return $supprimerTravaux;
 		// cette fonction va afficher la liste des commentaires
 	}

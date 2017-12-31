@@ -2,9 +2,9 @@
 
 namespace Backend;
 
-require_once ('Modele.php');
+require_once (root_path . '/vendor/Modele.php');
 
-class AdminModele extends Modele {
+class AdminModele extends \Cosplay\Modele {
 
 	function __construct() {
 		parent::__construct();

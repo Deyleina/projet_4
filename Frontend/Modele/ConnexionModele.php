@@ -2,9 +2,9 @@
 
 namespace Frontend;
 
-require_once('Modele.php');
+require_once(root_path . '/vendor/Modele.php');
 	
-class ConnexionModele extends Modele{
+class ConnexionModele extends \Cosplay\Modele{
 		
 	function __construct(){
 		parent::__construct();

@@ -1,6 +1,25 @@
 <div class="bloc-a-propos">
-    <h2>A propos</h2>
-    <div class="bloc-texte">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices justo ut leo iaculis, et faucibus quam tincidunt. Duis magna diam, consectetur a rutrum ut, feugiat et mauris. Proin ac velit at augue mollis commodo. Integer aliquam imperdiet cursus. Suspendisse risus eros, euismod sit amet vulputate pulvinar, convallis pretium lorem. Morbi quis elit vitae ipsum egestas lacinia. Maecenas sem dolor, porta ac enim ac, posuere finibus quam. Sed sit amet volutpat nibh. In at tellus sit amet eros condimentum auctor. Nam finibus sed justo non posuere.</p>
-    </div>
+    <h2>A propos de nous</h2>
+    <div class="bloc-presentation">
+	    <div class="bloc-image-nous">
+	    	<img src="Frontend/Vue/images/nous.jpg">
+	    </div>
+	    <div class="bloc-texte-presentation">
+	    	<h4>Moi :</h4>
+	        <p>Je me nomme Marie et je suis cosplayeuse depuis... 2003 ! Non en fait, j'ai participer aux premières éditions (plus précisément le 5ème et 6ème impact). Puis j'ai fait une loonnnngue pause jusqu'en 2013 où j'ai repris goût au cosplay notamment grâce à mon amie Brittany [lien].<br/>
+
+	        Mon premier cosplay a été... Ciel Phantomhive du manga Black Butler !<br/>
+
+	    	Les costumes qui m'ont donné le plus d'émotions sont : Lara Croft, Aquarius (Fairy Tail) et Aloy (Horizon Zero Dawn) !</p><br/>
+
+	    	<h4>Lui :</h4>
+	        <p>Mon compagnon est mon photographe officiel !<br/>
+
+	        Nous nous sommes rencontrés en 2015 lors d'une formation.<br/>
+
+	    	Il soutient mes projets et je fais en sorte de respecter ses choix (ce qui inclu, hormis certains personnages, de ne plus me cosplayer de façon trop légère).<br/>
+
+	    	Je l'adore !</p>
+	    </div>
+	</div>
 </div>

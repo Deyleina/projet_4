@@ -1,11 +1,13 @@
-<?php while ($donnees = $gestionTravaux->fetch()) { ?>
+<?php foreach ($informationTravaux as $donnees) { ?>
 
-<div id="">
-	<form action="?p=validerAjoutTravaux" method="POST">
-		<input type="hidden" name="id" value="<?= $donnees['id'] ?>">
-		<p><label><strong>Titre à modifier : </strong></label><input title="modifier" type="text" name="titreModif" value="<?= $donnees['titre']; ?>"></p>
-		<p><label><strong>Contenu à modifier : </strong></label><input class="tinyMceText" title="modification de contenu" type="text" name="contenuModif" value="<?=htmlspecialchars($donnees['contenu']);?>"></input></p>
-		<input title="envoyer" type="submit" name="modifier" value="Envoyer">
+<div class="formulaire-modification-travaux">
+	<form action="index.php?page=validerModificationTravaux" method="POST">
+		<input type="hidden" name="idModif" value="<?= htmlspecialchars($_GET['recup']); ?>">
+		<p><label>Image à modifier : </label><br><input title="modifier" type="text" name="imageModif" value="<?= htmlspecialchars($donnees['image']); ?>"></p>
+		<p><label>Titre à modifier : </label><br><input title="modifier" type="text" name="titreModif" value="<?= htmlspecialchars($donnees['titre']); ?>"></p>
+		<p><label>Contenu à modifier : </label><br><input title="modification de contenu" type="text" name="contenuModif" value="<?= htmlspecialchars($donnees['contenu']); ?>"></input></p>
+
+		<button type="submit" class="btn btn-success" title="envoyer" name="modifier">Envoyer <span class="glyphicon glyphicon-arrow-right"></span></button>
 	</form>
 </div>
 

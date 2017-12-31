@@ -2,9 +2,9 @@
 
 namespace Frontend;
 
-require_once ('Modele.php');
+require_once (root_path . '/vendor/Modele.php');
 
-class TravauxEnCoursModele extends Modele {
+class TravauxEnCoursModele extends \Cosplay\Modele {
 	function afficherArticle() {
 		$travauxEnCours = $this->bdd->query('SELECT image, titre, date, contenu FROM travaux ORDER BY id DESC LIMIT 0, 10');
 		return $travauxEnCours;

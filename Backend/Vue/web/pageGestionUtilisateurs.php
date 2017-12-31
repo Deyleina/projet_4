@@ -1,15 +1,19 @@
 <div class="gestion-utilisateurs-liste">
-	<form>
-	    <?php while ($donnees = $gestionUtilisateurs->fetch()) { ?>
-	    	<p><?= $donnees['pseudo'] ?></p>
-		    <p><?= $donnees['email'] ?></p>
-
-		    <form action="?page=suppressionUtilisateur" method="POST">
-					<input type="hidden" name="supprimer" value="<?= $donnees['id']; ?>">
-					<input title="envoyer" type="submit" name="supprimerBillet" value="Supprimer">
-				</form>
-		    
-		    <a href="?page=supprimerUtilisateur"><img src="http://icons.iconarchive.com/icons/gakuseisean/ivista-2/48/Misc-Delete-Database-icon.png"></a>
+	<h2>Liste des utilisateurs :</h2>
+	<table class="table table-bordered table-striped table-condensed">
+    	<thead>
+	    	<tr>
+	    		<th>Pseudo</th>
+	    		<th>Email</th>
+	    	</tr>
+    	</thead>
+	    <?php foreach ($listeUtilisateurs as $donnees) { ?>
+	    <tbody>
+	    	<tr>
+	    		<td><p><?= htmlspecialchars($donnees['pseudo']) ?></p></td>
+		    	<td><p><?= htmlspecialchars($donnees['email']) ?></p></td>
+			</tr>
+		</tbody>
 		<?php } ?>
-	</form>
+	</table>
 </div>

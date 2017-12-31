@@ -2,41 +2,60 @@
 
 namespace Frontend;
 
-require_once ('Modele.php');
+require_once (root_path . '/vendor/Modele.php');
 
-class LivreModele extends Modele {
+class LivreModele extends \Cosplay\Modele {
 
 	function __construct() {
 		parent::__construct();
 	}
 
-	function listeCommentaire() {
-		$com = $this->bdd->query('SELECT * FROM livre ORDER BY date_creation DESC LIMIT 0, 10');
-		return $com;
+	function listeCommentaire($debut, $limite) {
+		$nombreParPage = 5;
+		$totalCommentaire = $this->bdd->prepare('SELECT * FROM livre ORDER BY date_creation DESC LIMIT ' . $debut . ', ' . $nombreParPage);
+		$totalCommentaire->execute();
+		return $totalCommentaire;
 		// cette fonction va afficher la liste des commentaires
 	}
 
-	function ajouterCommentaire($pseudo, $contenu, $idUser) {
-		$ajoutCom = $this->bdd->prepare('INSERT INTO livre (id_utilisateur, pseudo, contenu, date_creation) VALUES (:idUser, :pseudo, :contenu, NOW())');
-		$ajoutCom->execute(array('idUser' => $idUser, 'pseudo' => $pseudo, 'contenu' => $contenu));
-		return $ajoutCom;
+	function countCommentaire() {
+		$retour = $this->bdd->query('SELECT COUNT(*) FROM livre');
+		return $retour->fetch()[0];
+	}
+
+	function detailCompte($pseudo) {
+		$compte = $this->bdd->prepare('SELECT * FROM utilisateurs WHERE pseudo = :pseudo');
+		$compte->execute();
+		return $compte;
+	}
+
+	function ajouterCommentaire($idUser, $auteur, $contenu) {
+		$ajoutCommentaire = $this->bdd->prepare('INSERT INTO livre (id_utilisateur, auteur, contenu, date_creation) VALUES (:idUser, :auteur, :contenu, NOW())');
+		$ajoutCommentaire->execute(array('idUser' => $idUser, 'auteur' => $auteur, 'contenu' => $contenu));
+		return $ajoutCommentaire;
 	}
 
 	function recupererInfoCommentaire($id) {
-		$infoCom = $this->bdd->prepare('SELECT * FROM livre WHERE id = ?');
-		$infoCom->execute(array($id));
-		return $infoCom;
+		$infoCommentaire = $this->bdd->prepare('SELECT * FROM livre WHERE id = ?');
+		$infoCommentaire->execute(array($id));
+		return $infoCommentaire;
 	}
 
-	function validationModificationCommentaire($pseudo, $contenu, $id) {
-		$modifierCom = $this->bdd->prepare('UPDATE livre SET pseudo = :pseudo, contenu = :contenu WHERE id = :id');
-		$modifierCom->execute(array('pseudo' => $pseudo, 'contenu' => $contenu, 'id' => $id));
-		return $modifierCom;
+	function validationModificationCommentaire($auteur, $contenu, $id) {
+		$modifierCommentaire = $this->bdd->prepare('UPDATE livre SET auteur = :auteur, contenu = :contenu WHERE id = :id');
+		$modifierCommentaire->execute(array('auteur' => $auteur, 'contenu' => $contenu, 'id' => $id));
+		return $modifierCommentaire;
+	}
+
+	function signalementCommentaire($id) {
+		$signaler = $this->bdd->prepare('UPDATE livre SET statut = 1 WHERE id = :id');
+		$signaler->execute(array('id' => $id));
+		return $signaler;
 	}
 
 	function suppressionCommentaire($id) {
-		$suppCom = $this->bdd->prepare('DELETE FROM livre WHERE id = ?');
-		$suppCom->execute(array($id));
-		return $suppCom;
+		$supprimerCommentaire = $this->bdd->prepare('DELETE FROM livre WHERE id = ?');
+		$supprimerCommentaire->execute(array($id));
+		return $supprimerCommentaire;
 	}
 }

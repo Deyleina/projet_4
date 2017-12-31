@@ -2,13 +2,8 @@
 
 namespace Frontend;
 
-require_once('Modele.php');
+require_once(root_path . '/vendor/connexion.php');
 
-class PagesModele extends Modele {
-
-	function __construct() {
-		parent::__construct();
-	}
-
+class PagesModele {
 	function page() {}
 }

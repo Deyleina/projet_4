@@ -2,9 +2,9 @@
 
 namespace Backend;
 
-require_once ('Modele.php');
+require_once (root_path . '/vendor/Modele.php');
 
-class GestionTestModele extends Modele {
+class GestionTestModele extends \Cosplay\Modele {
 
 	function __construct() {
 		parent::__construct();
@@ -15,4 +15,12 @@ class GestionTestModele extends Modele {
 		return $gestionTests;
 		// cette fonction va afficher la liste des commentaires
 	}
+
+	function suppressionTest($id) {
+		$supprimerTest = $this->bdd->prepare('DELETE FROM test WHERE id = ?');
+		$supprimerTest->execute(array($id));
+		return $supprimerTest;
+	}
+
+
 }

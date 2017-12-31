@@ -16,14 +16,8 @@ class ModifierUtilisateurControleur {
 		if (isset($_GET['recup'])){
 			$recuperation = $this->ModifierUtilisateurModele->recupererUtilisateurs($_GET['recup']);
 			require (root_path . '/Backend/Vue/web/pageModificationUtilisateur.php');
+			$recuperation->closeCursor();
 		}
-	}
-
-	public function validerModificationUtilisateur(){
-		$modifier = $this->ModifierUtilisateurModele->modifierUtilisateur($_POST['modif'], $_POST['idmodif']);
-		// header('location: Index.php?p=dernierBillet_controleur');
-		echo '<SCRIPT LANGUAGE="JavaScript">document.location.href="Index.php?p=dernierBillet_controleur"</SCRIPT>';
-		die();
 	}
 }
 

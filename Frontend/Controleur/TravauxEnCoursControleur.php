@@ -14,6 +14,8 @@ class TravauxEnCoursControleur {
 
 	function afficherPageTravauxEnCours() {
 		$travauxEnCours = $this->TravauxEnCoursModele->afficherArticle();
+		$listeTravaux = $travauxEnCours->fetchAll();
 		require(root_path . '/Frontend/Vue/web/pageTravauxEnCours.php');
+		$travauxEnCours->closeCursor();
 	}
 }

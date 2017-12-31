@@ -14,26 +14,20 @@ class GestionTravauxControleur {
 
 	public function afficherGestionTravaux() {
 		$gestionTravaux = $this->GestionTravauxModele->listeTravaux();
-		require (root_path . '/Backend/Vue/web/pageGestionTravaux.php');
+		$listeTravaux = $gestionTravaux->fetchAll();
+		if(isset($_SESSION['pseudo']) AND $_SESSION['pseudo'] == "Deyleina") {
+			require (root_path . '/Backend/Vue/web/pageGestionTravaux.php');
+		} else {
+			echo '<p style="text-align:center;font-weight:bold;color:red;">Seul l\'administrateur a accès à cette partie du site !<p>';
+		}
+		$gestionTravaux->closeCursor();
 	}
 
-	public function ajoutTravaux() {
-		require (root_path . '/Backend/Vue/web/pageAjoutTravaux.php');
-	}
-
-	public function modifierTravaux() {
-		$gestionTravaux = $this->GestionTravauxModele->listeTravaux();
-		require (root_path . '/Backend/Vue/web/pageModificationTravaux.php');
-	}
-
-	public function validationModificationTravaux() {
-		$validerModificationTravaux = $this->GestionTravauxModele->validerModifierTravaux();
-		require (root_path . '/Backend/Vue/web/pageGestionTravaux.php');
-	}
-
-	public function supprimerTravaux() {
-		$supprimerTravaux = $this->GestionTravauxModele->suppressionTravaux();
-		require (root_path . '/Backend/Vue/web/pageGestionTravaux.php');
+	function supprimerTravaux() {
+		$supprimerTravaux = $this->GestionTravauxModele->suppressionTravaux($_POST['idActuel']);
+		$supprimerTravaux->closeCursor();
+		echo '<SCRIPT LANGUAGE="JavaScript">document.location.href="index.php?page=gestionTravaux"</SCRIPT>';
+		die;
 	}
 }
 
