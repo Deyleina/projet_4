@@ -2,30 +2,27 @@
 
 namespace Backend;
 
-require_once ('Modele.php');
+require_once (root_path . '/vendor/ConnexionUnique.php');
 
-class GestionTravauxModele extends Modele {
+class GestionTravauxModele {
 
-	function __construct() {
-		parent::__construct();
-	}
+	private $con; //variable de connexion
+
+    public function __construct()
+    {
+        $db = \Cosplay\ConnexionUnique::getInstance();
+        $this->con = $db->getDbh();
+    }
 
 	function listeTravaux() {
-		$gestionTravaux = $this->bdd->query('SELECT id, image, titre, date, contenu FROM travaux ORDER BY id DESC LIMIT 0, 10');
+		$gestionTravaux = $this->con->query('SELECT id, image, titre, date, contenu FROM travaux ORDER BY id DESC LIMIT 0, 10');
 		return $gestionTravaux;
 		// cette fonction va afficher la liste des commentaires
 	}
 
-	function validerModifierTravaux($image, $titre, $contenu, $id) {
-		$validerModificationTravaux = $this->bdd->prepare('UPDATE travaux SET image = :image, titre = :titre, date = NOW(), contenu = :contenu) WHERE id = :id');
-		$validerModificationTravaux->execute(array('image' => $image, 'titre' => $titre, 'contenu' => $contenu, 'id' => $id));
-		return $validerModificationTravaux;
-		// cette fonction va afficher la liste des commentaires
-	}
-
-	function supprimerTravaux($id) {
-		$supprimerTravaux = $this->bdd->query('DELETE * FROM travaux WHERE id = :id');
-		$supprimerTravaux->execute(array('id' => $id));
+	function suppressionTravaux($id) {
+		$supprimerTravaux = $this->con->prepare('DELETE FROM travaux WHERE id = ?');
+		$supprimerTravaux->execute(array($id));
 		return $supprimerTravaux;
 		// cette fonction va afficher la liste des commentaires
 	}

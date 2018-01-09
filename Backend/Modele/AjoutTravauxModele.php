@@ -2,18 +2,22 @@
 
 namespace Backend;
 
-require_once ('Modele.php');
+require_once (root_path . '/vendor/ConnexionUnique.php');
 
-class AjoutTravauxModele extends Modele {
+class AjoutTravauxModele {
 
-	function __construct() {
-		parent::__construct();
-	}
+	private $con; //variable de connexion
 
-	function validerAjouterTravaux($image, $titre, $contenu) {
-		$validerAjoutTravaux = $this->bdd->prepare('INSERT INTO travaux (image, titre, contenu) VALUES (:image, :titre, :contenu)');
-		$validerAjoutTravaux->execute(array('image' => $image, 'titre' => $titre, 'contenu' => $contenu));
-		return $validerAjoutTravaux;
+    public function __construct()
+    {
+        $db = \Cosplay\ConnexionUnique::getInstance();
+        $this->con = $db->getDbh();
+    }
+
+	function ajoutTravaux($image, $titre, $contenu) {
+		$ajouterTravaux = $this->con->prepare('INSERT INTO travaux (image, titre, contenu, date) VALUES (:image, :titre, :contenu, NOW())');
+		$ajouterTravaux->execute(array('image' => $image, 'titre' => $titre, 'contenu' => $contenu));
+		return $ajouterTravaux;
 		// cette fonction va afficher la liste des commentaires
 	}
 }

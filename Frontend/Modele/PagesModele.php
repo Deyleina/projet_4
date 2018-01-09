@@ -2,13 +2,17 @@
 
 namespace Frontend;
 
-require_once('Modele.php');
+require_once(root_path . '/vendor/ConnexionUnique.php');
 
-class PagesModele extends Modele {
+class PagesModele {
 
-	function __construct() {
-		parent::__construct();
-	}
+	private $con; //variable de connexion
 
+    public function __construct()
+    {
+        $db = \Cosplay\ConnexionUnique::getInstance();
+        $this->con = $db->getDbh();
+    }
+    
 	function page() {}
 }

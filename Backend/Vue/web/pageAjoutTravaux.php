@@ -1,8 +1,8 @@
-<div id="">
-	<form action="?p=validerAjoutTravaux" method="POST">
-		<p><label><strong>Ajouter l'url de votre image : </strong></label><input title="Ajouter une image" type="text" name="image" ></p>
-		<p><label><strong>Ajouter un titre : </strong></label><input title="Ajouter un titre" type="text" name="titre"></p>
-		<p><label><strong>Ajouter un contenu : </strong></label><input title="Ajouter un contenu" type="text" name="contenu" value=""></input></p>
-		<input title="envoyer" type="submit" name="ajouter" value="Envoyer">
+<div class="formulaire-ajout-travaux-en-cours">
+	<form action="index.php?page=validerAjoutTravaux" method="POST" enctype="multipart/form-data">
+		<p><label><strong>Sélectionnez votre image : </strong></label><br><input title="Ajouter une image" type="file" name="nouvelleImageTravaux" ></p>
+		<p><label><strong>Ajouter un titre : </strong></label><br><input title="Ajouter un titre" type="text" name="nouveauTitre"></p>
+		<p><label><strong>Ajouter un contenu : </strong></label><br><input title="Ajouter un contenu" type="text" name="nouveauContenu" value=""></input></p>
+		<button type="submit" class="btn btn-success" title="envoyer" name="ajouter">Envoyer <span class="glyphicon glyphicon-arrow-right"></span></button>
 	</form>
 </div>

@@ -13,11 +13,22 @@ class GestionUtilisateursControleur {
 	}
 
 	public function afficherListeUtilisateurs() {
-		/* $compte = $this->GestionUtilisateursModele->nombreUtilisateurs(); */
 		$gestionUtilisateurs = $this->GestionUtilisateursModele->listeUtilisateurs();
-		require (root_path . '/Backend/Vue/web/pageGestionUtilisateurs.php');
+		$listeUtilisateurs = $gestionUtilisateurs->fetchAll();
+		$gestionUtilisateurs->closeCursor();
+		if(isset($_SESSION['pseudo']) AND $_SESSION['pseudo'] == "Deyleina") {
+			require (root_path . '/Backend/Vue/web/pageGestionUtilisateurs.php');
+		} else {
+			echo '<p style="text-align:center;font-weight:bold;color:red;">Seul l\'administrateur a accès à cette partie du site !<p>';
+		}
 	}
 
+	public function supprimerUtilisateurDepuisCompteAdmin() {
+		$supprimerUtilisateurDepuisCompteAdmin = $this->GestionUtilisateursModele->suppressionUtilisateurDepuisCompteAdmin($_POST['idActuel']);
+		$supprimerUtilisateurDepuisCompteAdmin->closeCursor();
+		echo '<SCRIPT LANGUAGE="JavaScript">document.location.href="index.php?page=gestionUtilisateurs"</SCRIPT>';
+		die;
+	}
 }
 
 ?>

@@ -2,17 +2,27 @@
 
 namespace Frontend;
 
-require_once ('Modele.php');
+require_once (root_path . '/vendor/ConnexionUnique.php');
 
-class TestModele extends Modele {
+class TestModele {
+
+	private $con; //variable de connexion
+
+    public function __construct()
+    {
+        $db = \Cosplay\ConnexionUnique::getInstance();
+        $this->con = $db->getDbh();
+    }
+
 	function listeTest() {
-		$test = $this->bdd->query('SELECT plateforme, développeur, genre, intro FROM test ORDER BY id DESC LIMIT 0, 10');
+		$test = $this->con->query('SELECT * FROM test ORDER BY id DESC LIMIT 0, 10');
 		return $test;
 		// cette fonction va afficher la liste des tests dans la page
 	}
 
-	function afficherTest() {
-		$testComplet = $this->bdd->query('SELECT titre, image, contenu FROM test ORDER BY id DESC LIMIT 0, 10');
+	function afficherTest($id) {
+		$testComplet = $this->con->prepare('SELECT * FROM test WHERE id = ?');
+		$testComplet->execute(array($id));
 		return $testComplet;
 	}
 

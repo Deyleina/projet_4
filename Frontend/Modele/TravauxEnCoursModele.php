@@ -2,11 +2,20 @@
 
 namespace Frontend;
 
-require_once ('Modele.php');
+require_once (root_path . '/vendor/ConnexionUnique.php');
 
-class TravauxEnCoursModele extends Modele {
+class TravauxEnCoursModele {
+
+	private $con; //variable de connexion
+
+    public function __construct()
+    {
+        $db = \Cosplay\ConnexionUnique::getInstance();
+        $this->con = $db->getDbh();
+    }
+
 	function afficherArticle() {
-		$travauxEnCours = $this->bdd->query('SELECT image, titre, date, contenu FROM travaux ORDER BY id DESC LIMIT 0, 10');
+		$travauxEnCours = $this->con->query('SELECT image, titre, date, contenu FROM travaux ORDER BY id DESC LIMIT 0, 10');
 		return $travauxEnCours;
 		// cette fonction va afficher la liste des commentaires
 	}

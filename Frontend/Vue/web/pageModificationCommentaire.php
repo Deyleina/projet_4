@@ -1,11 +1,12 @@
-<?php while ($donnees = $infoCom->fetch()) { ?>
+<?php foreach ($informationCommentaire as $donnees) { ?>
 
-<div>
-	<form action="?page=validerModificationCommentaire" method="POST">
-		<input type="hidden" name="idModif" value="<?= $_GET['recup']; ?>">
-		<p><label>Pseudo à modifier : </label><input title="modifier" type="text" name="pseudoModif" value="<?= $donnees['pseudo']; ?>"></p>
-		<p><label>Contenu à modifier : </label><input title="modification de contenu" type="text" name="contenuModif" value="<?= $donnees['contenu']; ?>"></input></p>
-		<input title="envoyer" type="submit" name="modifier" value="Envoyer">
+<div class="formulaire-modification-commentaire">
+	<form action="index.php?page=validerModificationCommentaire" method="POST">
+		<input type="hidden" name="idModif" value="<?= htmlspecialchars($_GET['recup']); ?>">
+		<p><label>Pseudo à modifier : </label><br><input title="modifier" type="text" name="auteurModif" value="<?= htmlspecialchars($_SESSION['pseudo']); ?>"></p>
+		<p><label>Contenu à modifier : </label><br><input title="modification de contenu" type="text" name="contenuModif" value="<?= htmlspecialchars($donnees['contenu']); ?>"></input></p>
+		
+		<button type="submit" class="btn btn-success" title="envoyer" name="modifier">Envoyer <span class="glyphicon glyphicon-arrow-right"></span></button>
 	</form>
 </div>
 

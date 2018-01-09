@@ -2,28 +2,33 @@
 
 namespace Backend;
 
-require_once ('Modele.php');
+require_once (root_path . '/vendor/ConnexionUnique.php');
 
-class GestionUtilisateursModele extends Modele {
+class GestionUtilisateursModele {
 
-	function __construct() {
-		parent::__construct();
-	}
+	private $con; //variable de connexion
+
+    public function __construct()
+    {
+        $db = \Cosplay\ConnexionUnique::getInstance();
+        $this->con = $db->getDbh();
+    }
 
 	function listeUtilisateurs() {
-		$gestionUtilisateurs = $this->bdd->query('SELECT * FROM utilisateurs ORDER BY id DESC LIMIT 0, 10');
+		$gestionUtilisateurs = $this->con->query('SELECT * FROM utilisateurs ORDER BY id DESC LIMIT 0, 10');
 		return $gestionUtilisateurs;
 		// cette fonction va afficher la liste des commentaires
 	}
 
-	/*function nombreUtilisateurs() {
-		$compte = $this->bdd->query('SELECT COUNT (*) as nombre FROM utilisateurs');
-		return $compte;
-	}*/
-
 	function ajouterUtilisateur($pseudo,$email,$motdepasse){
-		$ajouter = $this->bdd->prepare('INSERT INTO utilisateurs (pseudo, email, motdepasse) VALUES (:pseudo, :email, :motdepasse)');
+		$ajouter = $this->con->prepare('INSERT INTO utilisateurs (pseudo, email, motdepasse) VALUES (:pseudo, :email, :motdepasse)');
 		$ajouter->execute(array('pseudo' => $pseudo, 'email' => $email, 'motdepasse' => sha1($motdepasse)));
 		return $ajouter;
+	}
+
+	function suppressionUtilisateurDepuisCompteAdmin($id) {
+		$supprimerUtilisateurDepuisCompteAdmin = $this->con->prepare('DELETE FROM utilisateurs WHERE id = ?');
+		$supprimerUtilisateurDepuisCompteAdmin->execute(array($id));
+		return $supprimerUtilisateurDepuisCompteAdmin;
 	}
 }

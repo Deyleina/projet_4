@@ -2,16 +2,20 @@
 
 namespace Backend;
 
-require_once ('Modele.php');
+require_once (root_path . '/vendor/ConnexionUnique.php');
 
-class AdminModele extends Modele {
+class AdminModele {
 
-	function __construct() {
-		parent::__construct();
-	}
+	private $con; //variable de connexion
+
+    public function __construct()
+    {
+        $db = \Cosplay\ConnexionUnique::getInstance();
+        $this->con = $db->getDbh();
+    }
 
 	function detailCompteAdmin($pseudo) {
-		$admin = $this->bdd->prepare('SELECT * FROM utilisateurs WHERE pseudo = :pseudo');
+		$admin = $this->con->prepare('SELECT * FROM utilisateurs WHERE pseudo = :pseudo');
 		$admin->execute(array('pseudo' => $pseudo));
 		return $admin;
 		// cette fonction va afficher la liste des commentaires

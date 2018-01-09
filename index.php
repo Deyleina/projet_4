@@ -1,154 +1,215 @@
 <?php
 
-	session_start();
+require_once('config.php');
 
-	use \Frontend\Page;
-	use \Frontend\Autoloader;
-	use \Frontend\LivreOrControleur;
-	use \Frontend\TravauxEnCoursControleur;
-	use \Frontend\TestControleur;
-	
-	use \Frontend\InscriptionControleur;
-	use \Frontend\ConnexionControleur;
-	use \Backend\CompteControleur;
-	use \Backend\AdminControleur;
-	
-	use \Backend\GestionTravauxControleur;
-	use \Backend\AjoutTravauxControleur;
-	use \Backend\GestionLivreControleur;
-	use \Backend\GestionTestControleur;
-	use \Backend\GestionUtilisateursControleur;
-	
-	define('root_path', __DIR__);
-
-	require root_path . '/autoloader.php';
-
-	require_once(root_path . '/Frontend/Controleur/PagesControleur.php');
-	$p = new Page();
-	require_once(root_path . '/Frontend/Controleur/LivreOrControleur.php');
-	$livreOrControleur = new LivreOrControleur();
-	require_once(root_path . '/Frontend/Controleur/TravauxEnCoursControleur.php');
-	$travauxEnCoursControleur = new TravauxEnCoursControleur();
-	require_once(root_path . '/Frontend/Controleur/TestControleur.php');
-	$testControleur = new TestControleur();
-	
-	require_once(root_path . '/Frontend/Controleur/InscriptionControleur.php');
-	$inscriptionControleur = new InscriptionControleur();
-	require_once(root_path . '/Frontend/Controleur/ConnexionControleur.php');
-	$connexionControleur = new ConnexionControleur();
-	require_once(root_path . '/Backend/Controleur/CompteControleur.php');
-	$compteControleur = new CompteControleur();
-	require_once(root_path . '/Backend/Controleur/AdminControleur.php');
-	$adminControleur = new AdminControleur();
-	
-	require_once(root_path . '/Backend/Controleur/GestionTravauxControleur.php');
-	$gestionTravauxControleur = new GestionTravauxControleur();
-	require_once(root_path . '/Backend/Controleur/AjoutTravauxControleur.php');
-	$ajoutTravauxControleur = new AjoutTravauxControleur();
-	require_once(root_path . '/Backend/Controleur/GestionTestControleur.php');
-	$gestionTestControleur = new GestionTestControleur();
-	require_once(root_path . '/Backend/Controleur/GestionLivreControleur.php');
-	$gestionLivreControleur = new GestionLivreControleur();
-	require_once(root_path . '/Backend/Controleur/GestionUtilisateursControleur.php');
-	$gestionUtilisateursControleur = new GestionUtilisateursControleur();
-	$e = new Exception();
-
-	if (isset($_GET['page'])) {
+if (isset($_GET['page'])) {
 		$page = $_GET['page'];
+	} else {
+		$page = 'accueil';
 	}
 
 	ob_start();
 
-	switch($page) {
-	case ('multimedia') :
-	$p->afficherPageMultimedia();
-	break;	
-	case ('dossier') :
-	$p->afficherPageMultimediaDossier();
-	break;
-	case ('detail') :
-	$p->afficherPageMultimediaDetail();
-	break;
-	case ('travaux') :
-	$travauxEnCoursControleur->afficherPageTravauxEnCours();
-	break;	
-	case ('test') :
-	$testControleur->afficherPageTest();
-	break;
-	case ('suiteTest') :
-	$testControleur->afficherSuiteTest();
-	break;
-	case ('moi') :
-	$p->afficherPageAPropos();
-	break;
-	case ('livre') :
-	$livreOrControleur->afficherPageLivreOr();
-	break;
-	case ('envoyerCommentaire');
-	$livreOrControleur->envoyerCommentaire();
-	break;
-	case ('modifierCommentaire');
-	$livreOrControleur->infoCommentaire();
-	break;
-	case ('validerModificationCommentaire');
-	$livreOrControleur->modifierCommentaire();
-	break;
-	case ('supprimerCommentaire');
-	$livreOrControleur->supprimerCommentaire();
-	break;
-	
-	case ('inscription') :
-	$inscriptionControleur->afficherPageInscription();
-	break;
-	case ('nouvelUtilisateur') :
-	$inscriptionControleur->ajoutUtilisateur();
-	break;
-	case ('connexion') :
-	$connexionControleur->afficherPageConnexion();
-	break;
-	case ('connexionUtilisateur') :
-	$connexionControleur->connexionUtilisateur();
-	break;
-	case ('compte') :
-	$compteControleur->afficherPageCompte();
-	break;
-	case ('modifierCompte') :
-	$compteControleur->modifierLeCompte();
-	break;
-	case ('validerModificationUtilisateur') :
-	$compteControleur->modificationValidee();
-	break;
-	case ('supprimerCompte') :
-	$compteControleur->supprimerLeCompte();
-	break;
-	case ('admin') :
-	$adminControleur->afficherPageAdmin();
-	break;
-	case ('deconnexion') :
-	$connexionControleur->deconnexionUtilisateur();
-	break;
+		switch($page) {
 
-	case ('gestionTravaux') :
-	$gestionTravauxControleur->afficherGestionTravaux();
-	break;
+			/* Partie affichage des pages */
+		case 'accueil' :
+		$pagesControleur->afficherAccueil();
+		break;
+		case 'cgu' :
+		$pagesControleur->afficherConditionsGeneralesUtilisation();
+		break;
+		case 'mention' :
+		$pagesControleur->afficherMention();
+		break;
+		case 'multimedia' :
+		$pagesControleur->afficherPageMultimedia();
+		break;	
+		case 'dossierJeuxVideos' :
+		$pagesControleur->afficherPageMultimediaDossierJeuxVideos();
+		break;
+		case 'detailHorizonZeroDawn' :
+		$pagesControleur->afficherPageMultimediaDetailHorizonZeroDawn();
+		break;
+		case 'detailTombRaider' :
+		$pagesControleur->afficherPageMultimediaDetailTombRaider();
+		break;
+		case 'dossierAnimeMangas' :
+		$pagesControleur->afficherPageMultimediaDossierAnimeMangas();
+		break;
+		case 'detailFairyTail' :
+		$pagesControleur->afficherPageMultimediaDetailFairyTail();
+		break;
+		case 'detailVampireKnight' :
+		$pagesControleur->afficherPageMultimediaDetailVampireKnight();
+		break;
+		case 'dossierDivers' :
+		$pagesControleur->afficherPageMultimediaDossierDivers();
+		break;
+		case 'detailLoL' :
+		$pagesControleur->afficherPageMultimediaDetailLoL();
+		break;
+		case 'detailDivers' :
+		$pagesControleur->afficherPageMultimediaDetailDivers();
+		break;
+		case 'envoiFichier' :
+		$imagesControleur->envoyerImage();
+		break;
+		case 'travaux' :
+		$travauxEnCoursControleur->afficherPageTravauxEnCours();
+		break;	
+		case 'test' :
+		$testControleur->afficherPageTest();
+		break;
+		case 'suiteTest' :
+		$testControleur->afficherSuiteTest();
+		break;
+		case 'moi' :
+		$pagesControleur->afficherPageAPropos();
+		break;
+		case 'livre' :
+		$livreOrControleur->afficherPageLivreOr();
+		break;
 
-	case ('gestionLivre') :
-	$gestionLivreControleur->afficherListeCommentaires();
-	break;
+			/* Partie commentaires */
 
-	case ('gestionTest') :
-	$gestionTestControleur->afficherListeTests();
-	break;
+		case 'envoyerCommentaire' :
+		$livreOrControleur->envoyerCommentaire();
+		break;
+		case 'modifierCommentaire' :
+		$livreOrControleur->infoCommentaire();
+		break;
+		case 'validerModificationCommentaire' :
+		$livreOrControleur->modifierCommentaire();
+		break;
+		case 'signalerCommentaire' :
+		$livreOrControleur->signalerCommentaire();
+		break;
+		case 'supprimerCommentaire' :
+		$livreOrControleur->supprimerCommentaire();
+		break;
 
-	case ('gestionUtilisateurs') :
-	$gestionUtilisateursControleur->afficherListeUtilisateurs();
-	break;
+			/* Partie inscription, connexion, compte */
+		
+		case 'inscription' :
+		$inscriptionControleur->afficherPageInscription();
+		break;
+		case 'nouvelUtilisateur' :
+		$inscriptionControleur->ajoutUtilisateur();
+		break;
+		case 'connexion' :
+		$connexionControleur->afficherPageConnexion();
+		break;
+		case 'connexionUtilisateur' :
+		$connexionControleur->connexionUtilisateur();
+		break;
+		case 'compte' :
+		$compteControleur->afficherPageCompte();
+		break;		
+		case 'modifierCompte' :
+		$compteControleur->modifierLeCompte();
+		break;
+		case 'validerModificationUtilisateur' :
+		$compteControleur->modificationValidee();
+		break;
+		case 'supprimerCompte' :
+		$compteControleur->supprimerLeCompte();
+		break;
+		case 'admin' :
+		$adminControleur->afficherPageAdmin();
+		break;
+		case 'deconnexion' :
+		$connexionControleur->deconnexionUtilisateur();
+		break;
 
-	default :
-	$p->afficherAccueil();
-	break;
-	}
+			/* Partie avatars */
 
-	$content = ob_get_clean();
-	require(root_path . '/Frontend/Vue/template.php');
-?>
+		case 'selectionAvatar' :
+		$compteControleur->afficherPageAvatars();
+		break;
+		case 'ajoutAvatarFille' :
+		$compteControleur->ajouterAvatarBaseFille();
+		break;
+		case 'ajoutAvatarGarçon' :
+		$compteControleur->ajouterAvatarBaseGarçon();
+		break;
+		case 'selectionAvatarPerso' :
+		$compteControleur->afficherPageModificationAvatarPerso();
+		break;
+		case 'validerModificationAvatarUtilisateur' :
+		$compteControleur->modificationAvatarValidee();
+		break;
+
+			/* Partie gestion Wip */
+
+		case 'gestionTravaux' :
+		$gestionTravauxControleur->afficherGestionTravaux();
+		break;
+		case 'ajoutTravaux' :
+		$ajoutTravauxControleur->afficherFormulaireAjoutTravaux();
+		break;
+		case 'validerAjoutTravaux' :
+		$ajoutTravauxControleur->validationAjoutTravaux();
+		break;
+		case 'modifierTravaux' :
+		$modificationTravauxControleur->infoTravaux();
+		break;
+		case 'validerModificationTravaux' :
+		$modificationTravauxControleur->validationModificationTravaux();
+		break;
+		case 'supprimerTravaux' :
+		$gestionTravauxControleur->supprimerTravaux();
+		break;
+
+			/* Partie gestion livre d'or */
+
+		case 'gestionLivreOr' :
+		$gestionLivreControleur->afficherListeCommentaires();
+		break;
+		case 'modifierCommentaireAdmin' :
+		$gestionLivreControleur->infoCommentaireAdmin();
+		break;
+		case 'validerModificationCommentaireCompte' :
+		$gestionLivreControleur->modifierCommentaireAdmin();
+		break;
+		case 'supprimerCommentaireAdmin' :
+		$gestionLivreControleur->supprimerCommentaireAdmin();
+		break;
+
+			/* Partie gestion test */
+
+		case 'gestionTest' :
+		$gestionTestControleur->afficherListeTests();
+		break;
+		case 'ajoutTestGaming' :
+		$ajoutTestControleur->afficherFormulaireAjoutTest();
+		break;
+		case 'validerAjoutTest' :
+		$ajoutTestControleur->validationAjoutTest();
+		break;
+		case 'modifierTest' :
+		$modificationTestControleur->infoTest();
+		break;
+		case 'validerModificationTest' :
+		$modificationTestControleur->validationModificationTest();
+		break;
+		case 'supprimerTest' :
+		$gestionTestControleur->supprimerTest();
+		break;
+
+			/* Partie gestion utilisateurs */
+
+		case 'gestionUtilisateurs' :
+		$gestionUtilisateursControleur->afficherListeUtilisateurs();
+		break;
+		case 'supprimerCompteDepuisPageAdmin' :
+		$gestionUtilisateursControleur->supprimerUtilisateurDepuisCompteAdmin();
+		break;
+
+		default :
+		$pagesControleur->afficherPageErreur(); // rediriger vers controleur
+		break;
+		}
+
+		$content = ob_get_clean();
+		require(root_path . '/Frontend/Vue/template.php');

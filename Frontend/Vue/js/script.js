@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$('.btn-navigation').click(function(){
 		$(this).find('.barre').toggleClass('blanc');
-		$('.navigation').toggleClass('isOpen');
+		$('.navbar-inverse').toggleClass('isOpen');
 	});
 
 	$('.imageAffiche').click(function() {

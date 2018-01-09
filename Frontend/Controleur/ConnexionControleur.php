@@ -2,7 +2,7 @@
 
 namespace Frontend;
 	
-require_once('/Frontend/Modele/ConnexionModele.php');
+require_once(root_path . '/Frontend/Modele/ConnexionModele.php');
 
 class ConnexionControleur {
 
@@ -13,7 +13,7 @@ class ConnexionControleur {
 	}
 
 	public function afficherPageConnexion() {
-		require '/Frontend/Vue/web/pageConnexion.php';
+		require root_path . '/Frontend/Vue/web/pageConnexion.php';
 	}
 
 	public function connexionUtilisateur() {
@@ -22,7 +22,9 @@ class ConnexionControleur {
 		if ($_POST['pseudo'] == $donnees['pseudo'] & sha1($_POST['motdepasse']) ==  $donnees['motdepasse']) {
 			$_SESSION['pseudo'] = $donnees['pseudo'];
 			$_SESSION['id'] = $donnees['id'];
-			require (root_path . '/Frontend/Vue/web/pageAccueil.php');
+			$connexion->closeCursor();
+			echo '<SCRIPT LANGUAGE="JavaScript">document.location.href="index.php?page=compte"</SCRIPT>';
+			die();
 		}else {
 			echo '<p>Mot de passe ou pseudo incorrect</p>';
 		}
@@ -31,7 +33,8 @@ class ConnexionControleur {
 	public function deconnexionUtilisateur() {
 		session_destroy();
 		//echo "<p>Vous vous êtes déconnecté. A bientôt !</p>";
-		header('Location: index.php?page=accueil');
+		echo '<SCRIPT LANGUAGE="JavaScript">document.location.href="index.php?page=accueil"</SCRIPT>';
+		die();
 	}
 }
 

@@ -2,7 +2,7 @@
 
 namespace Backend;
 	
-require_once('/Backend/Modele/AdminModele.php');
+require_once(root_path . '/Backend/Modele/AdminModele.php');
 
 class AdminControleur {
 
@@ -15,10 +15,12 @@ class AdminControleur {
 	public function afficherPageAdmin() {
 		$admin = $this->AdminModele->detailCompteAdmin($_SESSION['pseudo']);
 		$donnees = $admin->fetch();
-		if (isset($_SESSION['pseudo']) == $donnees['pseudo']) {
-			$_SESSION['pseudo'] = $donnees['pseudo'];
-		require '/Backend/Vue/web/pageAdmin.php';
+		if(isset($_SESSION['pseudo']) AND $_SESSION['pseudo'] == "Deyleina") {
+			require root_path . '/Backend/Vue/web/pageAdmin.php';
+		} else {
+			echo '<p style="text-align:center;font-weight:bold;color:red;">Vous n\'êtes pas l\'administrateur de ce site !<p>';
 		}
+		$admin->closeCursor();
 	}
 }
 
